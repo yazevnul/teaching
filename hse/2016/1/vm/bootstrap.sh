@@ -7,6 +7,7 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 apt-get update
 apt-get install -y gcc-6 g++-6 gdb
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 
 # for those who is a fan of Clang and LLVM
 wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
