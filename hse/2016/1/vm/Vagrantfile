@@ -1,0 +1,9 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "minimal/trusty64"
+  config.vm.provider "virtualbox" do |v|
+    v.name = "cpp_hse_2016_1"
+    v.memory = 1024
+    v.cpus = 2
+  end
+  config.vm.provision :shell, path: "bootstrap.sh"
+end
