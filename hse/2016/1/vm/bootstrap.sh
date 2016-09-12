@@ -19,6 +19,7 @@ apt-get install -y clang-format-3.9
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.9 60 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-3.9
 update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-3.9 60
 update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-3.9 60
+update-alternatives --install /usr/bin/llvm-symbolizer lldb-symbolizer /usr/bin/lldb-symbolizer-3.9 60
 update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-3.9 60
 update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.9 60
 
