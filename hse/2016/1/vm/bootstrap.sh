@@ -20,3 +20,9 @@ update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-ser
 
 # those are better than a regular libstdc++, but requires `--stdlib=libc++` when compiling
 apt-get install -y libc++-dev libc++abi-dev
+
+# Installing linux "perf" tool
+# See https://perf.wiki.kernel.org/index.php/Tutorial
+apt-get install -y "linux-tools-$(uname -r)"
+sh -c 'echo 0 > /proc/sys/kernel/kptr_restrict'
+sh -c 'echo -1 > /proc/sys/kernel/perf_event_paranoid'
