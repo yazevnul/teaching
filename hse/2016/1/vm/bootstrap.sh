@@ -14,9 +14,13 @@ wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 apt-add-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.9 main'
 apt-get update
 apt-get install -y clang-3.9 lldb-3.9
+apt-get install -y clang-tidy-3.9
+apt-get install -y clang-format-3.9
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.9 60 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-3.9
 update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-3.9 60
 update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-3.9 60
+update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-3.9 60
+update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.9 60
 
 # those are better than a regular libstdc++, but requires `--stdlib=libc++` when compiling
 apt-get install -y libc++-dev libc++abi-dev
@@ -26,3 +30,9 @@ apt-get install -y libc++-dev libc++abi-dev
 apt-get install -y "linux-tools-$(uname -r)"
 sh -c 'echo 0 > /proc/sys/kernel/kptr_restrict'
 sh -c 'echo -1 > /proc/sys/kernel/perf_event_paranoid'
+
+# Install CMake
+apt-get install -y cmake
+
+# Install Valgrind
+apt-get install -y valgrind
