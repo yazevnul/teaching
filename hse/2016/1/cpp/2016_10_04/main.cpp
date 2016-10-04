@@ -2,30 +2,52 @@
 #include <string>
 #include <vector>
 
+// Please, please, watch these two videos before asking me questions :)
+//
+// Arthur O'Dwyer "Template Normal Programming"
+// https://www.youtube.com/watch?v=vwrXHznaYLA
+// https://www.youtube.com/watch?v=VIz6xBvwYd8
+//
+
 template <typename T = float>
 class ComplexNumber {
     T real_{};
     T imaginary_{};
 
-    /* Make private members of ComplexNumber<U> instantiation available to ComplexNumber<T>
-     * instantiation when T != U.
-     *
-     * Btw, please read about class templates [1] and learn the difference between class template
-     * and class template instantiation.
-     *
-     * http://en.cppreference.com/w/cpp/language/class_template
-     */
+    // Make private members of ComplexNumber<U> instantiation available to ComplexNumber<T>
+    // instantiation when T != U.
+    //
+    // Btw, please read about class templates [1] and learn the difference between class template
+    // and class template instantiation.
+    //
+    // http://en.cppreference.com/w/cpp/language/class_template
     template <typename U>
     friend class ComplexNumber;
 public:
+    // read about rule of zero/three/five
+    // http://en.cppreference.com/w/cpp/language/rule_of_three
+    // http://en.cppreference.com/w/cpp/language/default_constructor
     ComplexNumber() = default;
     ComplexNumber(const T real, const T imaginary)
+        // member initialization
+        // http://en.cppreference.com/w/cpp/language/data_members#Member_initialization
         : real_{real}
         , imaginary_{imaginary} {
     }
     explicit ComplexNumber(const T real)
+        // delegating constructor
+        // http://en.cppreference.com/w/cpp/language/initializer_list#Delegating_constructor
         : ComplexNumber{real, {}} {
     }
+
+    // ComplexNumber(const ComplexNumber&) is implicit here
+    // see http://en.cppreference.com/w/cpp/language/copy_constructor
+
+    // ComplextNumber& operator=(const ComplexNumber&) is impicit here
+    // see http://en.cppreference.com/w/cpp/language/copy_assignment
+
+    // ~ComplexNumber() is implicit here (and trivial in fact)
+    // see http://en.cppreference.com/w/cpp/language/destructor
 
     template <typename U>
     ComplexNumber& operator=(const U other) {
@@ -34,10 +56,19 @@ public:
         return *this;
     }
 
+    // there were questions "why do we return non-const references from function?"
+    // in this concrete example (and it's `const` overload) the answer is `chaining`.
+    //
+    // But there is an entire FAQ on references [1] and you should read it all.
+    //
+    // https://isocpp.org/wiki/faq/references
     T& real() {
         return real_;
     }
 
+    // this `real` overload has `const` modifier, so it won't be able to modify `*this`.
+    // see http://alenacpp.blogspot.ru/2005/09/const-2.html
+    // oh, and Alena blog is awesome and I recommend you to read all of it.
     const T& real() const {
         return real_;
     }
@@ -96,8 +127,7 @@ std::ostream& operator <<(std::ostream& out, const std::vector<T>&) {
 
 template <typename T>
 std::ostream& operator <<(std::ostream& out, const ComplexNumber<T>& v) {
-    out << '{' << v.real() << ';' << v.imaginary() << '}';
-    return out;
+    return out << '{' << v.real() << ';' << v.imaginary() << '}';
 }
 
 int main() {
@@ -149,6 +179,8 @@ int main() {
         x.real() = 1;
         x.imaginary() = 100500;
 
+        // No assigment operator here! Actually `ComplexNumber<> y{x}` happens.
+        // See http://en.cppreference.com/w/cpp/language/copy_initialization
         ComplexNumber<> y = x;
         std::cout << y << std::endl;
     }
