@@ -5,7 +5,7 @@
 // An example of violation of ODR [1] (acronym for "One Definition Rule").
 //
 // - Try changing the order of a.cpp and b.cpp.
-// - Try attacing with debugger to what is happing.
+// - Try attacing with debugger to see what is happing.
 // - Try setting different optimization levels `-O0`, `-O1`, `-O2`, `-O3`, `-Os`, `-Ofast`.
 // - Try to use IPO [3] by adding `-flto` flag for compiler
 //
