@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-// fixed-width types are great use them!
+// fixed-width types are great, use them!
 #include <cstdint>
 
 // Another example of template metaprogramming. Here we evaluating Fibonacci numbers at compile
