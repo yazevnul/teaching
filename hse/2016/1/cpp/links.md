@@ -3,7 +3,7 @@
 - [Second test](https://official.contest.yandex.ru/contest/2857/)
 - [Third test](https://official.contest.yandex.ru/contest/2966/)
 - [Homework](https://official.contest.yandex.ru/contest/2843/)
-- [Third test](https://official.contest.yandex.ru/contest/3016/)
+- [Exam](https://official.contest.yandex.ru/contest/3016/)
 
 ### Compilers
 #### Major compilers
